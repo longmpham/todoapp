@@ -2,28 +2,13 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const TodoModel = require("./models/Todo");
+const TodoModel = require("./models/Todo"); 
+const connectDB = require("./db")
 
 app.use(express.json());
 app.use(cors())
 
-const uri = "mongodb+srv://long:long@cluster0.enwkp.mongodb.net/learnmern?retryWrites=true&w=majority"
-// const uri = "mongodb://localhost:27017/learnmern"
-mongoose.connect(
-  uri, 
-  { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true,
-  }
-);
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "mongodb connection error:"));
-db.once("open", function () {
-  console.log("You've Connected Successfully To Your DB");
-});
-db.on('disconnected', function () {
-  console.log('Mongoose disconnected');
-});
+connectDB();
 
 const port = 8000;
 
