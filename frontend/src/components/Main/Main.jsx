@@ -13,7 +13,7 @@ const Main = () => {
       const response = await fetch("http://localhost:8000/getTodos");
       const data = await response.json();
       setTodoList(data)
-      console.log(data)
+      // console.log(data)
     }
     fetchData();
     // if (todoList.length && !alert) {
@@ -22,6 +22,7 @@ const Main = () => {
   },[alert])
 
   React.useEffect(() => {
+    if (newTodo === "") return
     console.log("your data you're sending is: " + newTodo)
     const requestOptions = {
       method: "POST",
@@ -30,10 +31,11 @@ const Main = () => {
     }
     const postTodo = async () => { 
       try {
+        setAlert(true)
         const response = await fetch("http://localhost:8000/createTodo", requestOptions)
         const data = await response.json();
-        console.log(data)
-        setAlert(true)
+        console.log("post success")
+        
         setNewTodo("")
         // alert(false)
       } catch (error) {
@@ -71,8 +73,8 @@ const Main = () => {
         <h3 className="main-title">TODO LIST WITH MERN! WOO WOO</h3>
         <ul>
           {todoList.map(todo => (
-            <li key={todo.id} className="main-list-item">{todo.action}
-              <button className="main-list-button" onClick={handleClick}></button>
+            <li key={todo._id} className="main-list-item">{todo.action}
+              <button key={todo._id} className="main-list-button" onClick={handleClick}></button>
             </li>
           ))}
           { !alert ? <input className="main-list-item-input" type="text" name="input" onKeyPress={handleKeyPress} placeholder="New task..."></input> :
