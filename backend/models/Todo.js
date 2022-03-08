@@ -5,7 +5,7 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+})
 
-const TodoModel = mongoose.model("todos", TodoSchema)
+const TodoModel = mongoose.model("todo", TodoSchema)
 module.exports = TodoModel
