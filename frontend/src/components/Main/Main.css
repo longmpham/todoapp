@@ -1,0 +1,39 @@
+.main-window {
+  display: block;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 200px;
+  padding: 50px;
+  background-color: lightgrey;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.main-title {
+  color: black;
+}
+
+.main-list-item {
+  list-style: none;
+  padding: 10px;
+  /* float: left; */
+  border-bottom: 1px dotted black;  
+}
+
+.main-list-button {
+  padding: 8px;
+  float: right;
+  
+}
+
+.main-list-item-input {
+  padding: 10px;
+  width: 100%;
+  
+}
