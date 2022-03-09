@@ -7,7 +7,7 @@ const dotenv = require("dotenv").config();
 
 const app = express();
 app.use(express.json());
-app.use(cors())
+app.use("*", cors())
 
 connectDB();
 
@@ -54,12 +54,26 @@ app.post("/createTodo", async (request, response) => {
   }
 })
 
-app.put('/updateTodo', (req, res) => {
-  res.send('Got a PUT request at /user')
+app.put('/updateTodo/:id', async (req, res) => {
+  const { id } = req.params
+  console.log(req.body)
+  try {
+    const todo = await TodoModel.findByIdAndUpdate({"_id": id}, { "action": req.body.action})
+    res.send('updated: ' + id + ' : ' + req.body.action )
+  } catch (error) {
+    res.send(error)
+  }
 })
 
-app.delete('/deleteTodo', (req, res) => {
-  res.send('Got a DELETE request at /user')
+app.delete('/deleteTodo/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const todo = await TodoModel.findOneAndDelete({"_id": id})
+    res.send('deleted: '+ id)
+  } catch (error) {
+    console.log(error)
+  }
+
 })
 
 app.listen(port, () => {

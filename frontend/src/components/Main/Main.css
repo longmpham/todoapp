@@ -2,40 +2,84 @@
   display: block;
   border: 1px solid black;
   border-radius: 20px;
-  margin: 200px;
+  margin: 100px;
+  margin-left: 200px;
+  margin-right: 200px;
   padding: 50px;
   background-color: lightgrey;
-  overflow: scroll;
+  /* overflow: scroll; */
   height: 800px;
+}
+.main-title {
+  color: black;
 }
 
 ul {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
 }
 
-.main-title {
-  color: black;
+li>p:hover {
+  background-color: lightgreen;
+  cursor: pointer;
 }
 
-.main-list-item {
+.main-list {
   list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+}
+
+.main-list-text {
   padding: 10px;
   /* float: left; */
-  border-bottom: 1px dotted black;  
+  border-bottom: 1px dotted black;
+  flex-grow: 1;
+  width: 80%;
+  word-break: break-all;
 }
 
-.main-list-button {
+.main-list-buttons {
+  align-items: center;
+  justify-content: center;
+}
+
+.main-list-button-edit {
   padding: 8px;
-  float: right;
-  
+  background-color: yellow;
+  margin: 2px;
+}
+
+.main-list-button-delete {
+  padding: 8px;
+  background-color:red;
+  margin: 2px;
 }
 
 .main-list-item-input {
   padding: 10px;
   width: 100%;
-  
+}
+
+.main-window-edit {
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-item-edit {
+  height: 300px;
+  width: 100%; 
+  max-width: 100%;
+  font-size: 20px;
+}
+
+.main-item-button {
+  width: 100%; 
+  max-width: 100%;
+  padding: 10px;
+  background-color: lightblue;
 }
