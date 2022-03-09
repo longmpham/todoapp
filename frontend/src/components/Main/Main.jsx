@@ -102,24 +102,38 @@ const Main = () => {
   }, [alert]);
 
   const handleUpdateClick = (event) => {
-    setUpdateID(event.target.name)
+    setUpdateID(event.target.name);
     setIsUpdate((prevIsUpdate) => !isUpdate);
     setUpdateText(() => {
-      const indexFound = todoList.findIndex(x => x._id == event.target.name)
-      console.log(todoList[indexFound].action)
-      return todoList[indexFound].action
-    })
-    
+      const indexFound = todoList.findIndex((x) => x._id == event.target.name);
+      console.log(todoList[indexFound].action);
+      return todoList[indexFound].action;
+    });
   };
 
   const handleUpdateSubmit = (event) => {
     setIsUpdate((prevIsUpdate) => !isUpdate);
-    console.log(event.target)
-    setAlert(true)
+    console.log(event.target);
+    setAlert(true);
   };
   const handleDeleteClick = (event) => {
-    // delete todo api call!
-    setDeleteID(event.target.name);
+    // upgraded to handle div of <p> and the button to delete
+    if (event === null) return;
+    else {
+      try {
+        if (event.target.name === null) {
+          console.log("not null");
+          return;
+        } else {
+          setDeleteID(event.target.name);
+        }
+      } catch (error) {
+        setDeleteID(event);
+      }
+    }
+
+    // console.log(event.target);
+    // setDeleteID(event.target.name);
   };
 
   const handleOnChange = (event) => {
@@ -128,8 +142,8 @@ const Main = () => {
     // setTimeout(() => {
     //   setUpdateText(event.target.value)
     // }, 10000)
-    setUpdateText(event.target.value)
-  }
+    setUpdateText(event.target.value);
+  };
 
   const handleNewTodoKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -157,19 +171,26 @@ const Main = () => {
               name={updateID}
               className="main-item-button"
               onClick={handleUpdateSubmit}
-            >Update</button>
+            >
+              Update
+            </button>
           </div>
         ) : (
           <ul>
             {todoList.map((todo) => (
               <li key={todo._id} className="main-list">
-                <p className="main-list-text">{todo.action}</p>
+                <p
+                  className="main-list-text"
+                  name={todo._id}
+                  onClick={() => handleDeleteClick(todo._id)}
+                >
+                  {todo.action}
+                </p>
                 <div className="main-list-buttons">
                   <button
                     name={todo._id}
                     className="main-list-button-edit"
                     onClick={handleUpdateClick}
-
                   ></button>
                   <button
                     name={todo._id}
